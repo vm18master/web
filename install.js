@@ -9,18 +9,20 @@ var AMBIENTE_DESENVOLVIMENTO = ambienteDesenvolvimento();
 
 var url = window.location.href;
 
+var BASE_URL = "https://vm18master.github.io/web";
+
 // Url padrão de plugin 
-var PLUGIN_URL = "//app.assembla.com/spaces/vmspace/subversion/source/HEAD/plugin/{plugin}.js?_format=raw";
+var PLUGIN_URL = BASE_URL + "/plugin/{plugin}.js";
 
 var VM18_INSTALL_VERSION      = "HEAD";
-var VM18_INSTALL_URL          = "//app.assembla.com/code/vmspace/subversion/nodes/"+VM18_INSTALL_VERSION+"/js/plugin-vm18.js?_format=raw";
+var VM18_INSTALL_URL          = BASE_URL + "/js/plugin-vm18.js";
 var JQUERY_VERSION            = "1.12.4";
 var JQUERY_INSTALL_URL        = "https://code.jquery.com/jquery-"+JQUERY_VERSION+".min.js";
 var BOOTSTRAP_INSTALL_CSS     = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css";
 var BOOTSTRAP_INSTALL_JS      = "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js";
 var JQUERY_UI_INSTALL_URL     = "https://code.jquery.com/ui/1.12.1/jquery-ui.js";
 var JQUERY_UI_INSTALL_CSS     = "//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css";
-var PLUGIN_DESIGN_INSTALL_CSS = "//www.assembla.com/code/vmspace/subversion/nodes/HEAD/css/plugin-design.css?_format=raw";
+var PLUGIN_DESIGN_INSTALL_CSS = BASE_URL + "/css/plugin-design.css";
 
 var collectionPlugin = {
 	// TODO Configurar dependências
@@ -39,6 +41,7 @@ var collectionPlugin = {
 // Configuração de desenvolvimento
 ////////////////////////////////////////
 if (AMBIENTE_DESENVOLVIMENTO) {
+	INSTALL_URL = "http://localhost:8080/web/install.js";
 	PLUGIN_URL = "http://localhost:8080/vmspace/plugin/{plugin}.js";
 	VM18_INSTALL_URL = "http://localhost:8080/vmspace/js/plugin-vm18.js";
 	PLUGIN_DESIGN_INSTALL_CSS = "http://localhost:8080/vmspace/css/plugin-design.css";
