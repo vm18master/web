@@ -41,10 +41,21 @@ var collectionPlugin = {
 // Configuração de desenvolvimento
 ////////////////////////////////////////
 if (AMBIENTE_DESENVOLVIMENTO) {
+	// Check ambiente desenvolvimento
 	INSTALL_URL = "http://localhost:8080/web/install.js";
-	PLUGIN_URL = "http://localhost:8080/vmspace/plugin/{plugin}.js";
-	VM18_INSTALL_URL = "http://localhost:8080/vmspace/js/plugin-vm18.js";
-	PLUGIN_DESIGN_INSTALL_CSS = "http://localhost:8080/vmspace/css/plugin-design.css";
+	if (!document.querySelector('script[src="'+INSTALL_URL+'"]')) {
+		installDynamicScript(INSTALL_URL)
+		.then(function(){
+			console.log("Install desenvolvimento local");
+		})
+		.catch(function(err){
+			console.log("Error! Plugin desenvolvimento - " + err);
+	    });
+		throw new Error("Restarting with [Ambiente de Desenvolvimento]..."); // break script execution
+	}
+	PLUGIN_URL = "http://localhost:8080/web/plugin/{plugin}.js";
+	VM18_INSTALL_URL = "http://localhost:8080/web/js/plugin-vm18.js";
+	PLUGIN_DESIGN_INSTALL_CSS = "http://localhost:8080/web/css/plugin-design.css";
 }
 
 var SyncChainCollection = [
@@ -320,7 +331,7 @@ function PluginDesignCssInstaller() {
 // Opções de verificação
 // - Variável STORAGE_KEY_AMBIENTE_DESENVOLVIMENTO=true no localStorage.
 // - Variável document.VM18_AMBIENTE_DESENVOLVIMENTO.
-// - Existência de script "http://localhost:8080/vmspace/plugin/install.js".
+// - Existência de script "http://localhost:8080/web/install.js".
 function ambienteDesenvolvimento() {
 	var desenv = localStorage.getItem(STORAGE_KEY_AMBIENTE_DESENVOLVIMENTO);
 	//	if (document.VM18_AMBIENTE_DESENVOLVIMENTO == true) {
