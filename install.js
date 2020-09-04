@@ -28,6 +28,7 @@ var collectionPlugin = {
 	// TODO Configurar dependências
 	// "PluginBibliaOnline"  : new PluginConfiguration({url:/www.bibliaonline.com.br/,dependency:[{jQueryScriptInstaller:1,vm18ScriptInstaller:2}]}),
 	"PluginBibliaOnline"   : /www.bibliaonline.com.br/,
+	"PluginInscricaoCulto" : /ministeriodafe.com.br|doity.com.br/,
 	"PluginWImoveis"       : /www.wimoveis.com.br|www.imovelweb.com.br/,
 	"PluginMultiplus"      : /book.latam.com\/TAM\/dyn\/air\/redemption\/availability/,
 	"pluginModelo"         : /Plugin Modelo pattern/,
@@ -49,7 +50,7 @@ if (AMBIENTE_DESENVOLVIMENTO) {
 			console.log("Install desenvolvimento local");
 		})
 		.catch(function(err){
-			console.log("Error! Plugin desenvolvimento - " + err);
+			console.error("Error on loading plugin desenvolvimento - " + err);
 	    });
 		throw new Error("Restarting with [Ambiente de Desenvolvimento]..."); // break script execution
 	}
