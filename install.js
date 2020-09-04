@@ -147,7 +147,7 @@ function jQueryScriptInstaller() {
 		var newInstalation = false;
 		var conflict = false;
 		
-		if (typeof($) === 'undefined') {
+		if (typeof($) === 'undefined' && typeof(jQuery) === 'undefined') {
 			newInstalation = true;
 		} else {
 			if (typeof(window.jQuery) !== 'undefined' && window.jQuery.fn.jquery == JQUERY_VERSION) {
